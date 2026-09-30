@@ -11,7 +11,7 @@ export interface GridProperties {
 
 export type GridFeature = Feature<Polygon, GridProperties>
 export type GridCollection = FeatureCollection<Polygon, GridProperties>
-export type Metric = 'lst_mean_c' | 'ndvi_mean' | 'green_share_pct'
+export type Metric = 'lst_mean_c' | 'ndvi_mean' | 'green_share_pct' | 'hot_share_pct'
 
 export interface Manifest {
   schema_version: number

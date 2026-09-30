@@ -15,12 +15,14 @@ const colors: Record<Metric, string[]> = {
   lst_mean_c: ['#2a788e', '#a9d6bd', '#f7dfa4', '#ef9a60', '#be4b3b'],
   ndvi_mean: ['#e7e5d8', '#c8dbb5', '#8abf8c', '#4d956e', '#1e6252'],
   green_share_pct: ['#e7e5d8', '#c8dbb5', '#8abf8c', '#4d956e', '#1e6252'],
+  hot_share_pct: ['#f7efe3', '#f4cd9e', '#eba86a', '#d4703f', '#9c2f24'],
 }
 
 const breaks: Record<Metric, number[]> = {
   lst_mean_c: [35, 40, 45, 50, 55],
   ndvi_mean: [0, 0.2, 0.4, 0.6, 0.8],
   green_share_pct: [0, 25, 50, 75, 100],
+  hot_share_pct: [0, 25, 50, 75, 100],
 }
 
 function fillExpression(metric: Metric): maplibregl.ExpressionSpecification {

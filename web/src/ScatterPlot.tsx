@@ -12,9 +12,17 @@ export function ScatterPlot({ data, selectedId, onSelect }: Props) {
   }))
   const ymin = Math.floor(Math.min(...points.map(p => p.y)) / 5) * 5
   const ymax = Math.ceil(Math.max(...points.map(p => p.y)) / 5) * 5
+  const xs = points.map(point => point.x)
+  const xDataMin = Math.min(...xs)
+  const xDataMax = Math.max(...xs)
+  // Snap the axis to tenths of NDVI so the ticks read as round numbers.
+  const xmin = Math.max(-1, Math.floor(xDataMin * 10) / 10)
+  const xmax = Math.min(1, Math.ceil(xDataMax * 10) / 10)
+  const xSpan = xmax - xmin || 1
   const plotWidth = width - left - right
   const plotHeight = height - top - bottom
-  const xScale = (x: number) => left + ((x + 0.1) / 1.1) * plotWidth
+  const xScale = (x: number) => left + ((x - xmin) / xSpan) * plotWidth
+  const xTicks = Array.from({ length: 5 }, (_, index) => xmin + (xSpan * index) / 4)
   const yScale = (y: number) => top + ((ymax - y) / (ymax - ymin)) * plotHeight
   const xMean = points.reduce((sum, point) => sum + point.x, 0) / points.length
   const yMean = points.reduce((sum, point) => sum + point.y, 0) / points.length
@@ -33,12 +41,12 @@ export function ScatterPlot({ data, selectedId, onSelect }: Props) {
             <text x={left - 9} y={yScale(value) + 4} textAnchor="end" className="chart-tick">{value.toFixed(0)}°</text>
           </g>
         ))}
-        {[0, 0.25, 0.5, 0.75, 1].map(value => (
-          <text key={value} x={xScale(value)} y={height - 17} textAnchor="middle" className="chart-tick">{value.toFixed(2)}</text>
+        {xTicks.map((value, index) => (
+          <text key={index} x={xScale(value)} y={height - 17} textAnchor="middle" className="chart-tick">{value.toFixed(2)}</text>
         ))}
         <line x1={left} x2={width - right} y1={height - bottom} y2={height - bottom} className="chart-axis" />
         <line x1={left} x2={left} y1={top} y2={height - bottom} className="chart-axis" />
-        <line x1={xScale(0)} x2={xScale(0.9)} y1={yScale(trendY(0))} y2={yScale(trendY(0.9))} className="chart-trend" />
+        <line x1={xScale(xDataMin)} x2={xScale(xDataMax)} y1={yScale(trendY(xDataMin))} y2={yScale(trendY(xDataMax))} className="chart-trend" />
         {points.map(point => <circle key={point.id} cx={xScale(point.x)} cy={yScale(point.y)} r="2.35" className="chart-point" onClick={() => onSelect(point.id)} />)}
         {selected && <circle cx={xScale(selected.x)} cy={yScale(selected.y)} r="7" className="chart-selected" />}
       </svg>
