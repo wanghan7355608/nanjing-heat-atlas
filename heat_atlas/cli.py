@@ -12,7 +12,7 @@ from .analysis import QA_REJECT_BITS, aggregate_grid, calculate_indices, valid_p
 from .sources import ASSETS, COLLECTION, STAC_BASE, fetch_item, read_bands
 
 
-DEFAULT_ITEM = "LC09_L2SP_120038_20240918_02_T1"
+DEFAULT_ITEM = "LC08_L2SP_120038_20240809_02_T1"
 DEFAULT_BBOX = (118.68, 31.99, 118.95, 32.22)
 
 

@@ -2,7 +2,7 @@ name: Deploy Pages
 on:
   push:
     branches: [main]
-    paths: ['web/**', '.github/workflows/pages.yml']
+    paths: ['web/**', 'README.md', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
