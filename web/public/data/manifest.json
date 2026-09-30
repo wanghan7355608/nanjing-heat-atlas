@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "0.1.0",
+  "generated_at_utc": "2026-09-30T00:24:55.583871+00:00",
+  "title": "南京城市热环境与绿地分析",
+  "area": "南京主城区样区",
+  "bbox_wgs84": [
+    118.68,
+    31.99,
+    118.95,
+    32.22
+  ],
+  "crs": "EPSG:32650",
+  "item_id": "LC08_L2SP_120038_20240809_02_T1",
+  "acquired_at_utc": "2024-08-09T02:36:55.915144Z",
+  "scene_cloud_cover_pct": 0.83,
+  "source_item_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_120038_20240809_02_T1",
+  "source_collection_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2",
+  "source_assets": {
+    "lwir11": "Surface Temperature Band",
+    "red": "Red Band",
+    "nir08": "Near Infrared Band 0.8",
+    "qa_pixel": "Pixel Quality Assessment Band"
+  },
+  "qa_reject_bits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7
+  ],
+  "green_ndvi_threshold": 0.3,
+  "min_grid_coverage": 0.6,
+  "valid_pixels": 568880,
+  "sampled_pixels": 746496,
+  "valid_pixel_pct": 76.2,
+  "summary": {
+    "grid_count": 2046,
+    "grid_metres": 500,
+    "lst_mean_c": 45.2,
+    "lst_p10_c": 38.82,
+    "lst_p90_c": 50.27,
+    "hot_threshold_c": 48.22,
+    "ndvi_mean": 0.506,
+    "grid_ndvi_lst_correlation": -0.872
+  },
+  "notes": [
+    "LST is land surface temperature at the satellite overpass, not near-surface air temperature.",
+    "Grid-level NDVI/LST correlation is descriptive, not evidence of causal cooling.",
+    "Cloud, shadow, snow and water pixels are excluded; grids require at least 60% valid coverage."
+  ]
+}
